@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Asteroids (HTML/CSS/JS)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <div id="hud">
+      <div><span>Счет:</span> <span id="score">0</span></div>
+      <div><span>Рекорд:</span> <span id="hiScore">0</span></div>
+      <div><span>Волна:</span> <span id="wave">1</span></div>
+      <div><span>Жизни:</span> <span id="lives">3</span></div>
+      <div class="hint">[Управление: ←/→ — поворот, ↑ — тяга, Space — выстрел, Esc — пауза, Enter — старт, M — звук]</div>
+    </div>
+
+    <div id="overlay" class="overlay">
+      <div class="card">
+        <h1>Asteroids</h1>
+        <p id="overlayMessage">Нажмите Enter или Клик для начала</p>
+        <button id="startBtn">Начать</button>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var isFile = location.protocol === 'file:';
+        var s = document.createElement('script');
+        if (isFile) {
+          // Fallback for opening directly from filesystem (avoids module+CORS restrictions)
+          s.src = 'bundle.js';
+        } else {
+          s.type = 'module';
+          s.src = 'main.js';
+        }
+        document.currentScript.parentNode.insertBefore(s, document.currentScript);
+      })();
+    </script>
+  </body>
+  </html>
