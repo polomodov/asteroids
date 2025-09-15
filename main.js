@@ -78,11 +78,12 @@ updateHUD();
 
 function startPlaying() {
   if (audio) audio.resume();
-  game.scene = 'playing';
-  overlay.classList.add('hidden');
-  if (game.asteroids.length === 0) {
+  // Если стартуем из начального экрана или после gameover — всегда полный reset
+  if (game.scene === 'start' || game.scene === 'gameover') {
     resetGame();
   }
+  game.scene = 'playing';
+  overlay.classList.add('hidden');
 }
 
 startBtn.addEventListener('click', startPlaying);
@@ -231,4 +232,3 @@ function render() {
     ctx.restore();
   }
 }
-

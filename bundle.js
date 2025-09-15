@@ -159,7 +159,7 @@
   function resetGame(){ game.score=0; game.wave=1; game.lives=3; game.bullets.length=0; game.asteroids.length=0; game.particles.items.length=0; game.ship=createShip(width/2,height/2); respawnShip(game.ship); spawnWave(game,width,height); }
   function updateHUD(){ hud.score.textContent=String(game.score); hud.hi.textContent=String(game.hiScore); hud.wave.textContent=String(game.wave); hud.lives.textContent=String(game.lives); }
   updateHUD();
-  function startPlaying(){ audio && audio.resume(); game.scene='playing'; overlay.classList.add('hidden'); if(game.asteroids.length===0){ resetGame(); } }
+  function startPlaying(){ audio && audio.resume(); if (game.scene==='start' || game.scene==='gameover'){ resetGame(); } game.scene='playing'; overlay.classList.add('hidden'); }
   startBtn.addEventListener('click', startPlaying);
   overlay.addEventListener('click', () => { if(game.scene==='start'||game.scene==='gameover') startPlaying(); });
 
@@ -201,4 +201,3 @@
     if (game.scene==='paused'){ ctx.save(); ctx.fillStyle='rgba(0,0,0,0.3)'; ctx.fillRect(0,0,width,height); ctx.restore(); }
   }
 })();
-
